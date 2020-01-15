@@ -1,0 +1,17 @@
+import Mapbox from './Mapbox.tsx';
+import { Preview, Story, Meta, Props } from '@storybook/addon-docs/blocks';
+import * as stories from './Mapbox.stories';
+
+<Meta title="Core/Mapbox" component={Mapbox} />
+
+# Mapbox
+
+### `yarn add @dhi-ui-nomads/core`
+
+<Preview withToolbar>
+  <Story name="Basic">{stories.Basic()}</Story>
+</Preview>
+
+### Props
+
+<Props of={Mapbox} />

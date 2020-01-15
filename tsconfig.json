@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./",
+        "esModuleInterop": true,
+        "jsx": "react",
+        "lib": ["es2015", "dom"],
+        "moduleResolution": "node",
+        "noEmit": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "strictFunctionTypes": false,
+        "strictNullChecks": false,
+        "target": "esnext",
+        "paths": {
+            "@medly-components/*": ["packages/*/src"]
+        }
+    },
+    "include": ["packages", "docs"],
+    "exclude": ["node_modules", "packages/**/dist", ".storybook"]
+}
