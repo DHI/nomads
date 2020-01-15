@@ -2,16 +2,16 @@ import React, { SFC, useEffect, useState } from 'react';
 import ReactMapGL, { Source, Layer, FlyToInterpolator } from 'react-map-gl';
 import { easeCubicInOut } from 'd3-ease';
 
-import { Props } from './types';
+import * as Types from './types';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-const Mapbox: SFC<Props> = ({
+const Mapbox: SFC<Types.Props> = ({
   mapboxApiAccessToken,
+  mapInteractions,
+  mapPosition,
+  mapSource,
   mapStyle,
-  mapSource = {},
-  mapPosition = {},
-  mapInteractions = {},
   children,
   ...rest
 }) => {
@@ -32,7 +32,7 @@ const Mapbox: SFC<Props> = ({
 
   if (!hasConfig) return null;
 
-  const { collection, layers = [] } = mapSource;
+  const { collection, layers = [] } = mapSource || {};
 
   const isSourceVisible = !!collection;
 
