@@ -54,9 +54,7 @@ const Mapbox: SFC<Props> = ({
       {isSourceVisible && (
         <Source type="geojson" data={collection}>
           {layers.map(layer => (
-            <div key={layer.id}>
-              <Layer {...layer} />
-            </div>
+            <Layer key={layer.id} {...layer} />
           ))}
         </Source>
       )}

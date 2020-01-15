@@ -2,7 +2,7 @@ import React from 'react';
 import Mapbox from './Mapbox';
 
 export const Basic = () => (
-  <div style={{ width: '100%', height: '50vh' }}>
+  <div style={{ width: '100%', height: '100vh' }}>
     <Mapbox
       mapPosition={{
         latitude: 48.35,
