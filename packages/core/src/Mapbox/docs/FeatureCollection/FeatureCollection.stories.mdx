@@ -1,0 +1,33 @@
+import Mapbox from '../../Mapbox.tsx';
+import { Preview, Story, Meta, Props } from '@storybook/addon-docs/blocks';
+import * as stories from './FeatureCollection.stories';
+
+import { MapSource } from './MapSource.ts';
+import { MapPosition } from './MapPosition.ts';
+import { MapInteractions } from './MapInteractions.ts';
+
+<Meta title="Core/Mapbox" component={Mapbox} />
+
+# Mapbox
+
+### Example: Feature collection
+
+<Preview withToolbar>
+  <Story name="Feature collection">{stories.FeatureCollection()}</Story>
+</Preview>
+
+### Props
+
+<Props of={Mapbox} />
+
+### MapSource
+
+<Props of={MapSource} />
+
+### MapPosition
+
+<Props of={MapPosition} />
+
+### MapInteractions
+
+<Props of={MapInteractions} />

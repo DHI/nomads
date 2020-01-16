@@ -1,6 +1,8 @@
 import { MapInteractions as Interface } from '../../types';
 
 export const data: Interface = {
+  onClick: undefined,
+  onHover: undefined,
   scrollZoom: true,
   dragPan: true,
   dragRotate: true,

@@ -14,8 +14,8 @@ export interface MapPosition {
 }
 
 export interface MapInteractions {
-  onHover?: () => void;
-  onClick?: () => void;
+  onHover?: ({ features: [] }: any) => any;
+  onClick?: ({ features: [] }: any) => any;
   scrollZoom?: boolean;
   dragPan?: boolean;
   dragRotate?: boolean;
