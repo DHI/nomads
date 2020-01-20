@@ -36,10 +36,6 @@ const Mapbox: SFC<Types.Props> = ({
 
   const isSourceVisible = !!collection;
 
-  const hasPosition = Object.keys(mapPosition).length;
-
-  if (!hasPosition) return null;
-
   return (
     <ReactMapGL
       mapStyle={mapStyle}

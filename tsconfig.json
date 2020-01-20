@@ -1,20 +1,22 @@
 {
-    "compilerOptions": {
-        "baseUrl": "./",
-        "esModuleInterop": true,
-        "jsx": "react",
-        "lib": ["es2015", "dom"],
-        "moduleResolution": "node",
-        "noEmit": true,
-        "skipLibCheck": true,
-        "strict": true,
-        "strictFunctionTypes": false,
-        "strictNullChecks": false,
-        "target": "esnext",
-        "paths": {
-            "@medly-components/*": ["packages/*/src"]
-        }
-    },
-    "include": ["packages", "docs"],
-    "exclude": ["node_modules", "packages/**/dist", ".storybook"]
+  "compilerOptions": {
+    "baseUrl": "./",
+    "allowJs": true, // Allow JavaScript files to be compiled
+    "skipLibCheck": true, // Skip type checking of all declaration files
+    "esModuleInterop": true, // Disbles namespace imports (import * as fs from "fs") and enables CJS/AMD/UMD style imports (import fs from "fs")
+    "allowSyntheticDefaultImports": true, // Allow default imports from modules with no default export
+    "jsx": "react",
+    "lib": ["es2015", "dom"],
+    "moduleResolution": "node",
+    "noEmit": true,
+    "strict": true,
+    "strictFunctionTypes": false,
+    "strictNullChecks": false,
+    "target": "esnext",
+    "paths": {
+      "@dhi-solutions/*": ["packages/*/src"]
+    }
+  },
+  "include": ["packages", "docs"],
+  "exclude": ["node_modules", "packages/**/dist", ".storybook"]
 }

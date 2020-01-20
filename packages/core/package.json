@@ -22,17 +22,26 @@
     "watch": "run-p \"build:types -w\" \"build:js --watch\""
   },
   "peerDependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react": "16.8.6",
+    "react-dom": "16.8.6"
   },
   "dependencies": {
-    "d3-ease": "^1.0.6",
-    "mapbox-gl": "^1.6.1",
-    "react-map-gl": "^5.2.1"
+    "deck.gl": "7.3.3",
+    "@deck.gl/core": "7.3.3",
+    "@deck.gl/layers": "7.3.3",
+    "@deck.gl/aggregation-layers": "7.3.3",
+    "@deck.gl/mesh-layers": "7.3.3",
+    "@deck.gl/geo-layers": "7.3.3",
+    "@deck.gl/react": "7.3.3",
+    "d3-ease": "1.0.6",
+    "mapbox-gl": "1.6.1",
+    "react-map-gl": "5.2.1"
   },
   "devDependencies": {
-    "@types/d3-ease": "^1.0.9",
-    "@types/geojson": "^7946.0.7",
-    "@types/react-map-gl": "^5.1.0"
+    "@material-ui/core": "4.3.3",
+    "@types/d3-ease": "1.0.9",
+    "@types/geojson": "7946.0.7",
+    "@types/react-map-gl": "5.1.0",
+    "@types/yup": "0.26.27"
   }
 }
