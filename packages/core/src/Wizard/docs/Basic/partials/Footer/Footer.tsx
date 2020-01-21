@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import Button from '@material-ui/core/Button';
 
-import { WizardState } from '../../Basic.stories';
+import { WizardContext } from '../../Basic.stories';
 
 const Footer = () => {
-  const { actions, config } = useContext(WizardState);
+  const { actions, config } = useContext(WizardContext);
   const { goToPrevious, goToNext } = actions;
   const { isFirstStep, isLastStep, isDisabled } = config;
   return (

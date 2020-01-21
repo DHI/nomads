@@ -1,0 +1,31 @@
+import Accordion from '../../Accordion.tsx';
+import { Preview, Story, Meta, Props } from '@storybook/addon-docs/blocks';
+import * as stories from './Basic.stories';
+
+<Meta title="Core/Accordion" component={Accordion} />
+
+# DHI Solutions
+
+Shared components as a Service. Brought to you by Nomads in DHI Solutions.
+
+> _Nomads [noh-mads] are members of a people or tribe that has no permanent abode but moves about from place to place._
+
+<br />
+
+---
+
+<br />
+
+### Accordion
+
+#### Basic
+
+# [See example in CodeSandbox](https://codesandbox.io/s/mapbox-basic-6sevr)
+
+<Preview withToolbar>
+  <Story name="Basic">{stories.Basic()}</Story>
+</Preview>
+
+### Props
+
+<Props of={Accordion} />

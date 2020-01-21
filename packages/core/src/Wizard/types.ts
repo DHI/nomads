@@ -1,5 +1,5 @@
 import { Context, ReactNode } from 'react';
-import { Schema, boolean, number, string, bool } from 'yup';
+import { Schema } from 'yup';
 
 export interface Step {
   title: string;
@@ -7,7 +7,7 @@ export interface Step {
   validationSchema?: Schema<any>;
 }
 
-export interface WizardStateInterface {
+export interface WizardContextInterface {
   actions: {
     goToPrevious: () => void;
     goToNext: () => void;
@@ -26,7 +26,7 @@ export interface WizardStateInterface {
 }
 
 export interface Props {
-  context: Context<WizardStateInterface>;
+  context: Context<WizardContextInterface>;
   steps: Step[];
   children: ReactNode;
   disabled: boolean;

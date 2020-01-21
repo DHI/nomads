@@ -3,13 +3,13 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 
-import { WizardState } from '../../Basic.stories';
+import { WizardContext } from '../../Basic.stories';
 
 import useStyles from './styles';
 
 const Header = () => {
   const classes = useStyles(useStyles);
-  const { config } = useContext(WizardState);
+  const { config } = useContext(WizardContext);
   const { activeStep, activeTitle, steps } = config;
   return (
     <div className={classes.header}>
