@@ -16,7 +16,6 @@ const Mapbox: SFC<Types.Props> = ({
   ...rest
 }) => {
   const hasConfig = !!mapStyle && !!mapboxApiAccessToken;
-
   const [viewport, setViewport] = useState({});
 
   useEffect(() => {
@@ -33,7 +32,6 @@ const Mapbox: SFC<Types.Props> = ({
   if (!hasConfig) return null;
 
   const { collection, layers = [] } = mapSource || {};
-
   const isSourceVisible = !!collection;
 
   return (
