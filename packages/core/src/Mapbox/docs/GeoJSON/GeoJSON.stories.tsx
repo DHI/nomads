@@ -29,7 +29,8 @@ export const GeoJSON = () => {
                 filled: true,
                 extruded: true,
                 wireframe: true,
-                getElevation: ({ properties }) => Math.sqrt(properties.valuePerSqm) * 10,
+                getElevation: ({ properties }: { properties: { valuePerSqm: number } }) =>
+                  Math.sqrt(properties.valuePerSqm) * 10,
                 getLineColor: [255, 255, 255],
                 pickable: true,
               }),
