@@ -1,6 +1,6 @@
 {
-  "name": "@dhi-solutions/core",
-  "version": "0.0.9",
+  "name": "@dhi-solutions/wizard",
+  "version": "0.0.0",
   "side-effects": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -25,9 +25,8 @@
     "react": "16.8.6",
     "react-dom": "16.8.6"
   },
-  "dependencies": {
-    "@material-ui/core": "4.3.3",
-    "@material-ui/icons": "4.4.3"
-  },
-  "devDependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "@types/yup": "0.26.27"
+  }
 }
