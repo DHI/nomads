@@ -95,5 +95,13 @@
     "typescript": "^3.4.3",
     "webpack": "^4.29.6"
   },
-  "dependencies": {}
+  "dependencies": {
+    "deck.gl": "7.3.3",
+    "@deck.gl/aggregation-layers": "7.3.3",
+    "@deck.gl/core": "7.3.3",
+    "@deck.gl/geo-layers": "7.3.3",
+    "@deck.gl/layers": "7.3.3",
+    "@deck.gl/mesh-layers": "7.3.3",
+    "@deck.gl/react": "7.3.3"
+  }
 }
