@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Accordion from '../../../src/Accordion';
+import Accordion from '../../src/Accordion';
 
 export const Basic = () => (
   <div style={{ maxWidth: 600, padding: 30 }}>
