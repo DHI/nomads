@@ -1,6 +1,7 @@
-import React, { useMemo, createContext, FC, Suspense, useState } from 'react';
+import React, { useMemo, createContext, FC, useState } from 'react';
 import ThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import createMuiTheme, { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
 
 import * as Types from './types';
 
@@ -8,10 +9,12 @@ export const Context = createContext({});
 
 const AppShellContextProvider = Context.Provider;
 
-const Shell: FC<Types.Props> = ({ states = {}, actions = {}, refs = {}, children, fallback, theme = {} }) => {
+const Shell: FC<Types.Props> = ({ states = {}, actions = {}, refs = {}, children, theme = {} }) => {
   const [mapInteractions, setMapInteractions] = useState({});
   const [mapPosition, setMapPosition] = useState({});
   const [mapSource, setMapSource] = useState({});
+
+  const themeInjection = useMemo(() => createMuiTheme(theme as ThemeOptions), [theme]);
 
   const shared = useMemo(
     () => ({
@@ -33,15 +36,12 @@ const Shell: FC<Types.Props> = ({ states = {}, actions = {}, refs = {}, children
   );
 
   return (
-    <Suspense fallback={fallback || <div>Loading</div>}>
-      <AppShellContextProvider value={shared}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          {children}
-        </ThemeProvider>
-      </AppShellContextProvider>
-      ;
-    </Suspense>
+    <AppShellContextProvider value={shared}>
+      <ThemeProvider theme={themeInjection}>
+        <CssBaseline />
+        {children}
+      </ThemeProvider>
+    </AppShellContextProvider>
   );
 };
 
