@@ -1,5 +1,5 @@
 import React, { useMemo, createContext, FC, Suspense, useState } from 'react';
-import ThemeProvider from '@material-ui/styles/ThemeProvider';
+import ThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import * as Types from './types';
