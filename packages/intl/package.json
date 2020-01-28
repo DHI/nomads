@@ -1,6 +1,6 @@
 {
   "name": "@dhi-solutions/intl",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "side-effects": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -22,9 +22,9 @@
     "watch": "run-p \"build:types -w\" \"build:js --watch\""
   },
   "dependencies": {
-    "react-i18next": "11.2.6",
     "i18next": "19.0.2",
     "i18next-browser-languagedetector": "4.0.1",
-    "i18next-xhr-backend": "3.2.2"
+    "i18next-xhr-backend": "3.2.2",
+    "react-i18next": "11.2.6"
   }
 }
