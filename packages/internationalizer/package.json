@@ -1,5 +1,5 @@
 {
-  "name": "@dhi-solutions/intl",
+  "name": "@dhi-solutions/internationalizer",
   "version": "0.0.1",
   "side-effects": false,
   "main": "dist/index.js",
