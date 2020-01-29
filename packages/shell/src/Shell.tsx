@@ -1,5 +1,5 @@
 import React, { useMemo, createContext, FC, useState } from 'react';
-import ThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import createMuiTheme, { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
 
@@ -37,10 +37,10 @@ const Shell: FC<Types.Props> = ({ states = {}, actions = {}, refs = {}, children
 
   return (
     <AppShellContextProvider value={shared}>
-      <ThemeProvider theme={themeInjection}>
+      <MuiThemeProvider theme={themeInjection}>
         <CssBaseline />
         {children}
-      </ThemeProvider>
+      </MuiThemeProvider>
     </AppShellContextProvider>
   );
 };
