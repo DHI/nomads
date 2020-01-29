@@ -1,4 +1,4 @@
-import React, { useEffect, ReactNode } from 'react';
+import React, { useState, useEffect, ReactNode } from 'react';
 import i18n from 'i18next';
 import Backend from 'i18next-xhr-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
@@ -30,11 +30,15 @@ const Internationalizer = ({
   config?: object;
   children: ReactNode;
 }) => {
+  const [isInitialized, setIsInitialized] = useState(false);
+
   useEffect(() => {
     initialize(config);
   }, []);
-  console.log(i18n);
-  if (i18n.isInitialized) {
+
+  i18n.on('initialized', () => setIsInitialized(true));
+
+  if (isInitialized) {
     return <>{children}</>;
   }
   return null;
