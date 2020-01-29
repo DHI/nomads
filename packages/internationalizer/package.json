@@ -21,6 +21,10 @@
     "postbuild": "yarn build:types",
     "watch": "run-p \"build:types -w\" \"build:js --watch\""
   },
+  "peerDependencies": {
+    "react": "16.8.6",
+    "react-dom": "16.8.6"
+  },
   "dependencies": {
     "i18next": "19.0.2",
     "i18next-browser-languagedetector": "4.0.1",
