@@ -1,1 +1,1 @@
-export { default, Context } from './GlobalStateProvider';
+export { default, ShellContext } from './GlobalStateProvider';

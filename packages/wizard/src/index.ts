@@ -1,1 +1,1 @@
-export { default, WizardHeader, WizardContent, WizardFooter } from './Wizard';
+export { default, WizardContext, WizardHeader, WizardContent, WizardFooter } from './Wizard';

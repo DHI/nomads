@@ -1,20 +1,20 @@
-import { Context, ReactNode } from 'react';
+import { ReactNode, ElementType } from 'react';
 import { Schema } from 'yup';
 
 export interface Step {
   title: string;
-  component: ReactNode;
+  component: ElementType;
   validationSchema?: Schema<any>;
 }
 
-export interface WizardContextInterface {
-  actions: {
+export interface WizardContext {
+  actions?: {
     goToPrevious: () => void;
     goToNext: () => void;
     goToStep: (step: number) => void;
     setIsDisabled: (isDisabled: boolean) => void;
   };
-  config: {
+  config?: {
     steps: Step[];
     isDisabled: boolean;
     activeStep: number;
@@ -22,14 +22,13 @@ export interface WizardContextInterface {
     isFirstStep: boolean;
     isLastStep: boolean;
   };
-  shared: object;
+  shared?: object;
 }
 
 export interface Props {
-  context: Context<WizardContextInterface>;
   steps: Step[];
   children: ReactNode;
-  disabled: boolean;
+  disabled?: boolean;
   onDisabled?: (state: boolean) => any;
   onStepChange?: (step: number) => any;
   initialStep: number;

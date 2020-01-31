@@ -2,12 +2,12 @@ import React, { FC, useContext } from 'react';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
-import Shell, { Context } from '../../src';
+import Shell, { ShellContext } from '../../src';
 
 import { IContext } from '../../src/partials/GlobalStateProvider/types';
 
 const LanguageSwitcher: FC = () => {
-  const { intl } = useContext<IContext>(Context);
+  const { intl } = useContext<IContext>(ShellContext);
   const { instance, translate } = intl;
 
   const headline = translate('welcome');

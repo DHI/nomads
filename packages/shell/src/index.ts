@@ -1,6 +1,6 @@
-import { Context } from './partials/GlobalStateProvider';
+import { ShellContext } from './partials/GlobalStateProvider';
 import Shell from './Shell';
 
-export { Context };
+export { ShellContext };
 
 export default Shell;

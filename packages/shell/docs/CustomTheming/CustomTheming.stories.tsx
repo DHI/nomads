@@ -107,7 +107,7 @@ const SizedButtons = () => {
   );
 };
 
-export const Theming = () => (
+export const CustomTheming = () => (
   <>
     <Shell
       overrides={{

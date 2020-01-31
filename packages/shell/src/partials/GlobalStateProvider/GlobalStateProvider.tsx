@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { IContext } from './types';
 
-export const Context = createContext<IContext>({
+export const ShellContext = createContext<IContext>({
   actions: {},
   states: {},
   refs: {},
@@ -17,7 +17,7 @@ const useTranslationMocker = () => ({
   i18n: {},
 });
 
-const AppShellContextProvider = Context.Provider;
+const ShellContextProvider = ShellContext.Provider;
 
 const GlobalStateProvider: FC<Types.Props> = ({ actions, children, refs, states, withIntl }) => {
   const useIntl = withIntl ? useTranslation : useTranslationMocker;
@@ -27,7 +27,7 @@ const GlobalStateProvider: FC<Types.Props> = ({ actions, children, refs, states,
   const [mapSource, setMapSource] = useState({});
 
   return (
-    <AppShellContextProvider
+    <ShellContextProvider
       value={{
         actions: {
           ...actions,
@@ -49,7 +49,7 @@ const GlobalStateProvider: FC<Types.Props> = ({ actions, children, refs, states,
       }}
     >
       {children}
-    </AppShellContextProvider>
+    </ShellContextProvider>
   );
 };
 

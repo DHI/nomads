@@ -1,8 +1,19 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState, createContext } from 'react';
 import * as Types from './types';
 
+import Header from './partials/WizardHeader';
+import Content from './partials/WizardContent';
+import Footer from './partials/WizardFooter';
+
+export const WizardHeader = Header;
+export const WizardContent = Content;
+export const WizardFooter = Footer;
+
+export const WizardContext = createContext<Types.WizardContext>({});
+
+const WizardContextProvider = WizardContext.Provider;
+
 const Wizard: FC<Types.Props> = ({
-  context: Context,
   steps,
   children,
   disabled = false,
@@ -71,7 +82,7 @@ const Wizard: FC<Types.Props> = ({
   };
 
   return (
-    <Context.Provider
+    <WizardContextProvider
       value={{
         actions,
         config,
@@ -79,16 +90,8 @@ const Wizard: FC<Types.Props> = ({
       }}
     >
       {children}
-    </Context.Provider>
+    </WizardContextProvider>
   );
 };
-
-const ComponentWrapper = ({ component: Component }: any) => <Component />;
-
-export const WizardHeader = ComponentWrapper;
-
-export const WizardContent = ComponentWrapper;
-
-export const WizardFooter = ComponentWrapper;
 
 export default Wizard;
