@@ -109,7 +109,17 @@ const SizedButtons = () => {
 
 export const Theming = () => (
   <>
-    <Shell>
+    <Shell
+      overrides={{
+        theme: {
+          palette: {
+            primary: {
+              main: '#FD3F75',
+            },
+          },
+        },
+      }}
+    >
       <Box>
         <Box margin={4}>
           <Typography variant="h2">Contained Buttons</Typography>
