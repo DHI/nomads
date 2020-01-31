@@ -1,6 +1,6 @@
 {
   "name": "@dhi-solutions/shell",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "side-effects": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -28,10 +28,10 @@
     "react-dom": "16.8.6"
   },
   "dependencies": {
-    "lodash": "4.17.15",
     "i18next": "19.0.2",
     "i18next-browser-languagedetector": "4.0.1",
     "i18next-xhr-backend": "3.2.2",
+    "lodash": "4.17.15",
     "react-i18next": "11.2.6"
   },
   "devDependencies": {
