@@ -1,6 +1,6 @@
 {
   "name": "@dhi-solutions/shell",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "side-effects": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -31,7 +31,7 @@
     "lodash": "4.17.15"
   },
   "devDependencies": {
-    "@types/lodash": "4.14.149",
-    "@types/geojson": "7946.0.7"
+    "@types/geojson": "7946.0.7",
+    "@types/lodash": "4.14.149"
   }
 }
