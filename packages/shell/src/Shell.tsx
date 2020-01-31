@@ -1,48 +1,46 @@
-import React, { useMemo, createContext, FC, useState } from 'react';
-import { MuiThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import createMuiTheme, { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
+import React, { Suspense, FC, useEffect, useState } from 'react';
+import i18n from 'i18next';
+
+import setIntl from './lib/setIntl';
 
 import * as Types from './types';
 
-export const Context = createContext({});
+import GlobalStateProvider from './partials/GlobalStateProvider';
+import ThemeProvider from './partials/ThemeProvider';
 
-const AppShellContextProvider = Context.Provider;
+const Shell: FC<Types.Props> = ({
+  actions = {},
+  children,
+  fallback,
+  overrides = {},
+  refs = {},
+  states = {},
+  withIntl = false,
+}) => {
+  const [isInitialized, setIsInitialized] = useState(false);
 
-const Shell: FC<Types.Props> = ({ states = {}, actions = {}, refs = {}, children, theme = {} }) => {
-  const [mapInteractions, setMapInteractions] = useState({});
-  const [mapPosition, setMapPosition] = useState({});
-  const [mapSource, setMapSource] = useState({});
+  const { theme = {}, intl = {} } = overrides;
 
-  const themeInjection = useMemo(() => createMuiTheme(theme as ThemeOptions), [theme]);
+  useEffect(() => {
+    if (withIntl && !isInitialized) {
+      const instance = setIntl(i18n, intl);
+      if (instance) setIsInitialized(true);
+    } else {
+      setIsInitialized(true);
+    }
+    return () => setIsInitialized(false);
+  }, []);
 
-  const shared = useMemo(
-    () => ({
-      states: {
-        mapInteractions,
-        mapPosition,
-        mapSource,
-        ...states,
-      },
-      actions: {
-        setMapInteractions,
-        setMapPosition,
-        setMapSource,
-        ...actions,
-      },
-      refs,
-    }),
-    [states, actions, refs],
-  );
-
-  return (
-    <AppShellContextProvider value={shared}>
-      <MuiThemeProvider theme={themeInjection}>
-        <CssBaseline />
-        {children}
-      </MuiThemeProvider>
-    </AppShellContextProvider>
-  );
+  if (isInitialized) {
+    return (
+      <Suspense fallback={fallback || <p>Loading...</p>}>
+        <GlobalStateProvider actions={actions} states={states} refs={refs} withIntl={withIntl}>
+          <ThemeProvider overrides={theme}>{children}</ThemeProvider>
+        </GlobalStateProvider>
+      </Suspense>
+    );
+  }
+  return null;
 };
 
 export default Shell;

@@ -10,7 +10,7 @@
     "postinstall": "lerna bootstrap",
     "build": "lerna run build",
     "watch": "lerna run --parallel watch",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -s ./public -p 6006",
     "build-storybook": "cross-env BABEL_ENV=storybook build-storybook -c .storybook -o .out",
     "deploy-storybook": "cross-env BABEL_ENV=storybook storybook-to-ghpages",
     "create-pack": "lerna exec -- npm pack",
@@ -96,6 +96,7 @@
     "webpack": "^4.29.6"
   },
   "dependencies": {
+    "@material-ui/core": "4.3.3",
     "deck.gl": "7.3.3",
     "@deck.gl/aggregation-layers": "7.3.3",
     "@deck.gl/core": "7.3.3",

@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import { Theme } from '@material-ui/core/styles';
 
 export interface Props {
   states?: object;
@@ -7,5 +6,9 @@ export interface Props {
   refs?: object;
   children: ReactNode;
   fallback?: ReactNode;
-  theme?: Theme;
+  overrides?: {
+    theme?: object;
+    intl?: object;
+  };
+  withIntl?: boolean;
 }
