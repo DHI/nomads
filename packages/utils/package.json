@@ -20,8 +20,5 @@
     "build": "yarn build:js --delete-dir-on-start ",
     "postbuild": "yarn build:types",
     "watch": "run-p \"build:types -w\" \"build:js --watch\""
-  },
-  "dependencies": {
-    "lodash": "4.17.15"
   }
 }

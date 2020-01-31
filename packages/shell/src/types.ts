@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
 
 export interface Props {
   states?: object;
@@ -7,7 +8,7 @@ export interface Props {
   children: ReactNode;
   fallback?: ReactNode;
   overrides?: {
-    theme?: object;
+    theme?: ThemeOptions;
     intl?: object;
   };
   withIntl?: boolean;
