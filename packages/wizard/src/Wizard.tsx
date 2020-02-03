@@ -1,4 +1,5 @@
-import React, { FC, useEffect, useState, createContext } from 'react';
+import React, { FC, useEffect, useState, createContext, Fragment } from 'react';
+import { useFormik } from 'formik';
 import * as Types from './types';
 
 import Header from './partials/WizardHeader';
@@ -21,6 +22,7 @@ const Wizard: FC<Types.Props> = ({
   onStepChange,
   initialStep = 0,
   shared = {},
+  form: formik,
 }) => {
   // Validation
   const isAboveMin = initialStep >= 0;
@@ -33,6 +35,16 @@ const Wizard: FC<Types.Props> = ({
   const [activeTitle, setActiveTitle] = useState([...steps][step].title);
   const [isDisabled, setIsDisabled] = useState(disabled);
 
+  // Form setup
+  const withForm = !!formik && !!Object.values(formik).length;
+  const form = useFormik({
+    ...formik,
+    validationSchema: () => {
+      const { validationSchema = () => ({}), ...rest } = steps[activeStep];
+      return validationSchema({ ...rest });
+    },
+  });
+
   useEffect(() => {
     handleSetActiveStep(step || initialStep);
   }, [initialStep]);
@@ -41,18 +53,21 @@ const Wizard: FC<Types.Props> = ({
     handleSetIsDisabled(disabled);
   }, [disabled]);
 
+  useEffect(() => {
+    handleSetIsDisabled(!form.isValid);
+  }, [form.isValid]);
+
   // Step checkpoints
   const isFirstStep = activeStep === 0;
   const isLastStep = activeStep === steps.length - 1;
 
-  const config = {
-    steps,
-    isDisabled,
-    activeStep,
-    activeTitle,
-    isFirstStep,
-    isLastStep,
+  const handleFormValidation = async () => {
+    await form.validateForm();
   };
+
+  useEffect(() => {
+    if (withForm) handleFormValidation();
+  }, [activeStep]);
 
   // Handlers
   const handleSetActiveStep = (stepToSetActive: number) => {
@@ -64,6 +79,7 @@ const Wizard: FC<Types.Props> = ({
     setActiveStep(stepToSetActive);
     setActiveTitle(title);
   };
+
   const handleSetIsDisabled = (disabledBoolean: boolean) => {
     if (onDisabled) onDisabled(disabledBoolean);
     setIsDisabled(disabledBoolean);
@@ -81,16 +97,34 @@ const Wizard: FC<Types.Props> = ({
     setIsDisabled: handleSetIsDisabled,
   };
 
+  const config = {
+    steps,
+    isDisabled,
+    activeStep,
+    activeTitle,
+    isFirstStep,
+    isLastStep,
+  };
+
+  const Wrapper = withForm ? 'form' : Fragment;
+
+  const wrapperProps = withForm && {
+    onSubmit: form.handleSubmit,
+  };
+
   return (
-    <WizardContextProvider
-      value={{
-        actions,
-        config,
-        shared,
-      }}
-    >
-      {children}
-    </WizardContextProvider>
+    <Wrapper {...wrapperProps}>
+      <WizardContextProvider
+        value={{
+          actions,
+          config,
+          shared,
+          form,
+        }}
+      >
+        {children}
+      </WizardContextProvider>
+    </Wrapper>
   );
 };
 

@@ -13,7 +13,11 @@ export interface IProps {
 }
 
 const WizardFooter: FC<IProps> = ({ component, labels = {} }) => {
-  const { backLabel = '« Back', nextLabel = 'Next »', submitLabel = 'Create' } = labels;
+  const {
+    backLabel = '« Back',
+    nextLabel = 'Next »',
+    submitLabel = 'Create',
+  } = labels;
   const context = useContext(WizardContext);
   const { actions, config } = context;
   const { goToPrevious, goToNext } = actions;
@@ -24,15 +28,35 @@ const WizardFooter: FC<IProps> = ({ component, labels = {} }) => {
   }
   return (
     <>
-      <Button type="button" variant="outlined" color="primary" disabled={isFirstStep} onClick={goToPrevious}>
+      <Button
+        key="back"
+        type="button"
+        variant="outlined"
+        color="primary"
+        disabled={isFirstStep}
+        onClick={goToPrevious}
+      >
         {backLabel}
       </Button>
       {isLastStep ? (
-        <Button type="submit" variant="contained" color="primary" disabled={isDisabled}>
+        <Button
+          key="submit"
+          type="submit"
+          variant="contained"
+          color="primary"
+          disabled={isDisabled}
+        >
           {submitLabel}
         </Button>
       ) : (
-        <Button type="button" variant="contained" color="primary" disabled={isDisabled} onClick={goToNext}>
+        <Button
+          key="next"
+          type="button"
+          variant="contained"
+          color="primary"
+          disabled={isDisabled}
+          onClick={goToNext}
+        >
           {nextLabel}
         </Button>
       )}
