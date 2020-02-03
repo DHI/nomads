@@ -105,6 +105,8 @@
     "@deck.gl/geo-layers": "7.3.3",
     "@deck.gl/layers": "7.3.3",
     "@deck.gl/mesh-layers": "7.3.3",
-    "@deck.gl/react": "7.3.3"
+    "@deck.gl/react": "7.3.3",
+    "@dhi-solutions/breadcrumbs": "0.0.1",
+    "@material-ui/icons": "4.4.3"
   }
 }

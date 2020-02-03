@@ -10,7 +10,13 @@ import * as Types from './types';
 
 import useStyles from './styles';
 
-const Accordion: FC<Types.Props> = ({ headline, subline, children, expanded, onChange }) => {
+const Accordion: FC<Types.Props> = ({
+  headline,
+  subline,
+  children,
+  expanded,
+  onChange,
+}) => {
   const classes = useStyles({});
 
   if (!headline || !children) return null;
@@ -22,7 +28,11 @@ const Accordion: FC<Types.Props> = ({ headline, subline, children, expanded, onC
   });
   return (
     <>
-      <ExpansionPanel className={classes.noSpacing} expanded={expanded} onChange={onChange}>
+      <ExpansionPanel
+        className={classes.noSpacing}
+        expanded={expanded}
+        onChange={onChange}
+      >
         <ExpansionPanelSummary
           className={classes.summary}
           expandIcon={<ExpandMoreIcon />}
@@ -30,9 +40,15 @@ const Accordion: FC<Types.Props> = ({ headline, subline, children, expanded, onC
           id={`${identifier}-header`}
         >
           <Typography className={classes.heading}>{headline}</Typography>
-          {subline && <Typography className={classes.secondaryHeading}>{subline}</Typography>}
+          {subline && (
+            <Typography className={classes.secondaryHeading}>
+              {subline}
+            </Typography>
+          )}
         </ExpansionPanelSummary>
-        <ExpansionPanelDetails className={classes.content}>{children}</ExpansionPanelDetails>
+        <ExpansionPanelDetails className={classes.content}>
+          {children}
+        </ExpansionPanelDetails>
       </ExpansionPanel>
     </>
   );

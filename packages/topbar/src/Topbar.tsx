@@ -18,30 +18,21 @@ const Topbar: FC<Types.Props> = ({
   return (
     <AppBar {...rest}>
       <Toolbar disableGutters>
-        {children || (
-          <Box
-            width={1}
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-          >
-            {Left && (
-              <Box>
-                <Left />
+        <Box className={classes.container}>
+          {children || (
+            <>
+              <Box className={classes.block} justifyContent="flex-start">
+                {Left && <Left />}
               </Box>
-            )}
-            {Center && (
-              <Box>
-                <Center />
+              <Box className={classes.block} justifyContent="center">
+                {Center && <Center />}
               </Box>
-            )}
-            {Right && (
-              <Box>
-                <Right />
+              <Box className={classes.block} justifyContent="flex-end">
+                {Right && <Right />}
               </Box>
-            )}
-          </Box>
-        )}
+            </>
+          )}
+        </Box>
       </Toolbar>
     </AppBar>
   );
