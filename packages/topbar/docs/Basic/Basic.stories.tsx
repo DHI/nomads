@@ -8,7 +8,7 @@ import Breadcrumbs from '@dhi-solutions/breadcrumbs';
 import Topbar from '../../src';
 
 export const Basic = () => (
-  <Box width={1} height={1}>
+  <Box width={1} height={200} padding={4}>
     <Topbar
       left={() => (
         <Box paddingX={2}>
