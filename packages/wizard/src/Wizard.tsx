@@ -46,7 +46,7 @@ const Wizard: FC<Types.Props> = ({
   });
 
   useEffect(() => {
-    handleSetActiveStep(step || initialStep);
+    handleSetActiveStep(step);
   }, [initialStep]);
 
   useEffect(() => {
