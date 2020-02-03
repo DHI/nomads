@@ -14,12 +14,12 @@ export const WizardContext = createContext<Types.WizardContext>({});
 const WizardContextProvider = WizardContext.Provider;
 
 const Wizard: FC<Types.Props> = ({
-  steps,
+  steps = [],
   children,
   disabled = false,
   onDisabled,
   onStepChange,
-  initialStep,
+  initialStep = 0,
   shared = {},
 }) => {
   // Validation
