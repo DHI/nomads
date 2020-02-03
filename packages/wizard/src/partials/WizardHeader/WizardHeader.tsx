@@ -11,7 +11,7 @@ export interface IProps {
 }
 
 const WizardHeader: FC<IProps> = ({ component }) => {
-  const classes = useStyles(useStyles);
+  const classes = useStyles({});
   const context = useContext(WizardContext);
   const { config } = context;
   const { activeStep, steps } = config;
@@ -20,7 +20,11 @@ const WizardHeader: FC<IProps> = ({ component }) => {
     return <Component context={context} />;
   }
   return (
-    <Stepper activeStep={activeStep} alternativeLabel className={classes.stepper}>
+    <Stepper
+      activeStep={activeStep}
+      alternativeLabel
+      className={classes.stepper}
+    >
       {steps.map(({ title }: { title: string }) => (
         <Step key={title}>
           <StepLabel>{title}</StepLabel>
