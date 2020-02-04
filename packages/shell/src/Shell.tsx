@@ -9,13 +9,13 @@ import GlobalStateProvider from './partials/GlobalStateProvider';
 import ThemeProvider from './partials/ThemeProvider';
 
 const Shell: FC<Types.Props> = ({
-  actions = {},
   children,
   fallback,
   overrides = {},
   refs = {},
   states = {},
   withIntl = false,
+  withMapbox = false,
 }) => {
   const [isInitialized, setIsInitialized] = useState(false);
 
@@ -34,7 +34,12 @@ const Shell: FC<Types.Props> = ({
   if (isInitialized) {
     return (
       <Suspense fallback={fallback || <p>Loading...</p>}>
-        <GlobalStateProvider actions={actions} states={states} refs={refs} withIntl={withIntl}>
+        <GlobalStateProvider
+          states={states}
+          refs={refs}
+          withIntl={withIntl}
+          withMapbox={withMapbox}
+        >
           <ThemeProvider overrides={theme}>{children}</ThemeProvider>
         </GlobalStateProvider>
       </Suspense>

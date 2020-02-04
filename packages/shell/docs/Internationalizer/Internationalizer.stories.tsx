@@ -7,7 +7,8 @@ import Shell, { ShellContext } from '../../src';
 import { IContext } from '../../src/partials/GlobalStateProvider/types';
 
 const LanguageSwitcher: FC = () => {
-  const { intl } = useContext<IContext>(ShellContext);
+  const { states } = useContext<IContext>(ShellContext);
+  const { intl } = states;
   const { instance, translate } = intl;
 
   const headline = translate('welcome');

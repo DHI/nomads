@@ -4,10 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { IContext } from './types';
 
 export const ShellContext = createContext<IContext>({
-  actions: {},
   states: {},
   refs: {},
-  intl: {},
 });
 
 import * as Types from './types';
@@ -19,31 +17,39 @@ const useTranslationMocker = () => ({
 
 const ShellContextProvider = ShellContext.Provider;
 
-const GlobalStateProvider: FC<Types.Props> = ({ actions, children, refs, states, withIntl }) => {
+const GlobalStateProvider: FC<Types.Props> = ({
+  children,
+  refs,
+  states,
+  withIntl,
+  withMapbox,
+}) => {
   const useIntl = withIntl ? useTranslation : useTranslationMocker;
   const { t: translate, i18n: instance } = useIntl();
   const [mapInteractions, setMapInteractions] = useState({});
   const [mapPosition, setMapPosition] = useState({});
   const [mapSource, setMapSource] = useState({});
 
+  const intl = withIntl ? { instance, translate } : {};
+
+  const mapbox = withMapbox
+    ? {
+        mapInteractions,
+        setMapInteractions,
+        mapPosition,
+        setMapPosition,
+        mapSource,
+        setMapSource,
+      }
+    : {};
+
   return (
     <ShellContextProvider
       value={{
-        actions: {
-          ...actions,
-          setMapInteractions,
-          setMapPosition,
-          setMapSource,
-        },
         states: {
           ...states,
-          mapInteractions,
-          mapPosition,
-          mapSource,
-        },
-        intl: {
-          instance,
-          translate,
+          intl,
+          mapbox,
         },
         refs,
       }}

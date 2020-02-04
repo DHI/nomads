@@ -3,7 +3,6 @@ import { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
 
 export interface Props {
   states?: object;
-  actions?: object;
   refs?: object;
   children: ReactNode;
   fallback?: ReactNode;
@@ -12,4 +11,5 @@ export interface Props {
     intl?: object;
   };
   withIntl?: boolean;
+  withMapbox?: boolean;
 }
