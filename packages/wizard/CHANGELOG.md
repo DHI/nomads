@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.11](https://github.com/DHI-Solutions/nomads/compare/@dhi-solutions/wizard@0.0.10...@dhi-solutions/wizard@0.0.11) (2020-02-05)
+
+**Note:** Version bump only for package @dhi-solutions/wizard
+
+
+
+
+
 ## [0.0.10](https://github.com/DHI-Solutions/nomads/compare/@dhi-solutions/wizard@0.0.9...@dhi-solutions/wizard@0.0.10) (2020-02-03)
 
 **Note:** Version bump only for package @dhi-solutions/wizard

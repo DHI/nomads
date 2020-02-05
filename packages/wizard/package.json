@@ -1,6 +1,6 @@
 {
   "name": "@dhi-solutions/wizard",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "side-effects": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
