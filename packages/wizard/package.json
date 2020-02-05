@@ -1,6 +1,6 @@
 {
   "name": "@dhi-solutions/wizard",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "side-effects": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "formik": "2.1.3",
-    "yup":"0.28.1"
+    "yup": "0.28.1"
   },
   "devDependencies": {
     "@types/yup": "0.26.27"
