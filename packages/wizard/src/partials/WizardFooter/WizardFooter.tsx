@@ -15,14 +15,16 @@ export interface IProps {
 }
 
 const WizardFooter: FC<IProps> = ({
-  boxProps = {
-    display: 'flex',
-    justifyContent: 'space-between',
-    width: 1,
-  },
+  boxProps = {},
   component,
   labels = {},
 }) => {
+  const props = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: 1,
+    ...boxProps,
+  };
   const {
     backLabel = '« Back',
     nextLabel = 'Next »',
@@ -37,7 +39,7 @@ const WizardFooter: FC<IProps> = ({
     return <Component context={context} />;
   }
   return (
-    <Box {...boxProps}>
+    <Box {...props}>
       <Button
         key="back"
         type="button"

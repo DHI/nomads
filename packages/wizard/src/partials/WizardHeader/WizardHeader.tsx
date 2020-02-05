@@ -12,12 +12,11 @@ export interface IProps {
   boxProps?: BoxProps;
 }
 
-const WizardHeader: FC<IProps> = ({
-  boxProps = {
+const WizardHeader: FC<IProps> = ({ boxProps = {}, component }) => {
+  const props = {
     width: 1,
-  },
-  component,
-}) => {
+    ...boxProps,
+  };
   const classes = useStyles({});
   const context = useContext(WizardContext);
   const { config } = context;
@@ -27,7 +26,7 @@ const WizardHeader: FC<IProps> = ({
     return <Component context={context} />;
   }
   return (
-    <Box {...boxProps}>
+    <Box {...props}>
       <Stepper
         activeStep={activeStep}
         alternativeLabel

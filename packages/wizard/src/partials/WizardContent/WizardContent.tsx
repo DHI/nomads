@@ -6,11 +6,11 @@ export interface IProps {
   boxProps?: BoxProps;
 }
 
-const WizardContent: FC<IProps> = ({
-  boxProps = {
+const WizardContent: FC<IProps> = ({ boxProps = {} }) => {
+  const props = {
     width: 1,
-  },
-}) => {
+    ...boxProps,
+  };
   const context = useContext(WizardContext);
   const { config } = context;
   const { steps, activeStep } = config;
@@ -18,7 +18,7 @@ const WizardContent: FC<IProps> = ({
     ...steps,
   ].find((step, index) => index === activeStep);
   return (
-    <Box {...boxProps} data-drawer-content="data-drawer-content">
+    <Box {...props} data-drawer-content="data-drawer-content">
       <Component {...context} {...rest} />
     </Box>
   );

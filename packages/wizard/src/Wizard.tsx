@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState, createContext, Fragment } from 'react';
 import { useFormik } from 'formik';
 import * as Types from './types';
+import { object } from 'yup';
 
 import Header from './partials/WizardHeader';
 import Content from './partials/WizardContent';
@@ -40,10 +41,11 @@ const Wizard: FC<Types.Props> = ({
   const form = useFormik({
     ...formik,
     validationSchema: () => {
-      const { validationSchema, ...rest } = steps[activeStep];
-      const validationSchemaMocker = (args: any) => args;
-      const validate = validationSchema || validationSchemaMocker;
-      return validate({ ...rest });
+      const validationSchemaMocker = () => object().shape({});
+      const { validationSchema = validationSchemaMocker, ...rest } = steps[
+        activeStep
+      ];
+      return validationSchema({ ...rest });
     },
   });
 
