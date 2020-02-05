@@ -40,8 +40,10 @@ const Wizard: FC<Types.Props> = ({
   const form = useFormik({
     ...formik,
     validationSchema: () => {
-      const { validationSchema = () => ({}), ...rest } = steps[activeStep];
-      return validationSchema({ ...rest });
+      const { validationSchema, ...rest } = steps[activeStep];
+      const validationSchemaMocker = (args: any) => args;
+      const validate = validationSchema || validationSchemaMocker;
+      return validate({ ...rest });
     },
   });
 
