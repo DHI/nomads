@@ -1,9 +1,11 @@
 import React, { FC, useContext, ElementType } from 'react';
+import Box, { BoxProps } from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 
 import { WizardContext } from '../../Wizard';
 
 export interface IProps {
+  boxProps?: BoxProps;
   component?: ElementType;
   labels?: {
     backLabel?: string;
@@ -12,7 +14,15 @@ export interface IProps {
   };
 }
 
-const WizardFooter: FC<IProps> = ({ component, labels = {} }) => {
+const WizardFooter: FC<IProps> = ({
+  boxProps = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: 1,
+  },
+  component,
+  labels = {},
+}) => {
   const {
     backLabel = '« Back',
     nextLabel = 'Next »',
@@ -27,7 +37,7 @@ const WizardFooter: FC<IProps> = ({ component, labels = {} }) => {
     return <Component context={context} />;
   }
   return (
-    <>
+    <Box {...boxProps}>
       <Button
         key="back"
         type="button"
@@ -60,7 +70,7 @@ const WizardFooter: FC<IProps> = ({ component, labels = {} }) => {
           {nextLabel}
         </Button>
       )}
-    </>
+    </Box>
   );
 };
 

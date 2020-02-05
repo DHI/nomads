@@ -40,15 +40,9 @@ export const Form = () => (
           alert(`Hi, ${firstName} ${lastName}!`),
       }}
     >
-      <Box width={1}>
-        <WizardHeader />
-      </Box>
-      <Box width={1} paddingY={4}>
-        <WizardContent />
-      </Box>
-      <Box width={1} display="flex" justifyContent="space-between">
-        <WizardFooter />
-      </Box>
+      <WizardHeader />
+      <WizardContent boxProps={{ paddingY: 4 }} />
+      <WizardFooter />
     </Wizard>
   </Box>
 );

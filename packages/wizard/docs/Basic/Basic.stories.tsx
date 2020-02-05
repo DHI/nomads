@@ -35,15 +35,9 @@ const steps = [
 export const Basic = () => (
   <Box bgcolor="background" width={1} padding={4}>
     <Wizard initialStep={0} steps={steps}>
-      <Box width={1}>
-        <WizardHeader />
-      </Box>
-      <Box width={1} paddingY={4}>
-        <WizardContent />
-      </Box>
-      <Box width={1} display="flex" justifyContent="space-between">
-        <WizardFooter />
-      </Box>
+      <WizardHeader />
+      <WizardContent boxProps={{ paddingY: 4 }} />
+      <WizardFooter />
     </Wizard>
   </Box>
 );
