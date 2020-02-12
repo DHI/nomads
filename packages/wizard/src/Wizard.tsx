@@ -71,7 +71,7 @@ const Wizard: FC<Types.Props> = ({
 
   useEffect(() => {
     if (withForm) handleFormValidation();
-  }, [activeStep]);
+  }, [activeStep, form.values]);
 
   // Handlers
   const handleSetActiveStep = (stepToSetActive: number) => {

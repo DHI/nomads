@@ -1,12 +1,12 @@
 import React from 'react';
 import { configure, addParameters, addDecorator } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs/react';
+// import { withKnobs } from '@storybook/addon-knobs/react';
 import { jsxDecorator } from 'storybook-addon-jsx';
 import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks';
 import Shell from '@dhi-solutions/shell';
 
 addDecorator(jsxDecorator);
-addDecorator(withKnobs);
+// addDecorator(withKnobs);
 addDecorator(StoryFn => (
   <Shell>
     <StoryFn />

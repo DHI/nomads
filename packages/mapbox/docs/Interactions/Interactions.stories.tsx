@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Mapbox from '../../src/Mapbox';
 
-import { data as initialMapSource, layers, getUpdatedCollection } from './MapSource';
+import {
+  data as initialMapSource,
+  layers,
+  getUpdatedCollection,
+} from './MapSource';
 import { data as mapPosition } from './MapPosition';
 import { data as initialMapInteractions } from './MapInteractions';
 
@@ -13,7 +17,9 @@ export const handleGetProperties = (feature: any) => {
 };
 
 export const Interactions = () => {
-  const [mapInteractions, setMapInteractions] = useState(initialMapInteractions);
+  const [mapInteractions, setMapInteractions] = useState(
+    initialMapInteractions,
+  );
   const [hoveringTrack, setHoveringTrack] = useState(undefined);
   const [mapSource, setMapSource] = useState(initialMapSource);
 
