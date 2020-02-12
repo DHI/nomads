@@ -1,7 +1,17 @@
-import React, { FC, useEffect, useState, createContext, Fragment } from 'react';
-import { useFormik } from 'formik';
-import * as Types from './types';
+import React, {
+  FC,
+  useState,
+  useEffect,
+  createContext,
+  useCallback,
+  useMemo,
+} from 'react';
+import { Formik, Form } from 'formik';
 import { object } from 'yup';
+
+import * as Types from './types';
+
+import WizardWrapper from './partials/WizardWrapper';
 
 import Header from './partials/WizardHeader';
 import Content from './partials/WizardContent';
@@ -13,9 +23,10 @@ export const WizardFooter = Footer;
 
 export const WizardContext = createContext<Types.WizardContext>({});
 
-const WizardContextProvider = WizardContext.Provider;
+export const WizardContextProvider = WizardContext.Provider;
 
 const Wizard: FC<Types.Props> = ({
+  form,
   steps = [],
   children,
   disabled = false,
@@ -23,55 +34,28 @@ const Wizard: FC<Types.Props> = ({
   onStepChange,
   initialStep = 0,
   shared = {},
-  form: formik,
 }) => {
-  // Validation
-  const isAboveMin = initialStep >= 0;
-  const isBelowMax = initialStep <= steps.length - 1;
-  const isValid = isAboveMin && isBelowMax;
+  // Initial step validation
+  const isAboveMin = useMemo(() => initialStep >= 0, [initialStep]);
+  const isBelowMax = useMemo(() => initialStep <= steps.length - 1, [
+    initialStep,
+  ]);
+  const isValid = useMemo(() => isAboveMin && isBelowMax, [
+    isAboveMin,
+    isBelowMax,
+  ]);
+  const step = useMemo(() => (isValid ? initialStep : 0), [isValid]);
 
-  // State
-  const step = isValid ? initialStep : 0;
+  // States
   const [activeStep, setActiveStep] = useState(step);
   const [activeTitle, setActiveTitle] = useState([...steps][step].title);
   const [isDisabled, setIsDisabled] = useState(disabled);
 
-  // Form setup
-  const withForm = !!formik && !!Object.values(formik).length;
-  const form = useFormik({
-    ...formik,
-    validationSchema: () => {
-      const validationSchemaMocker = () => object().shape({});
-      const { validationSchema = validationSchemaMocker, ...rest } = steps[
-        activeStep
-      ];
-      return validationSchema({ ...rest });
-    },
-  });
-
-  useEffect(() => {
-    handleSetActiveStep(step);
-  }, [initialStep]);
-
-  useEffect(() => {
-    handleSetIsDisabled(disabled);
-  }, [disabled]);
-
-  useEffect(() => {
-    handleSetIsDisabled(!form.isValid);
-  }, [form.isValid]);
-
-  // Step checkpoints
-  const isFirstStep = activeStep === 0;
-  const isLastStep = activeStep === steps.length - 1;
-
-  const handleFormValidation = async () => {
-    await form.validateForm();
-  };
-
-  useEffect(() => {
-    if (withForm) handleFormValidation();
-  }, [activeStep, form.values]);
+  // Checkpoints
+  const isFirstStep = useMemo(() => activeStep === 0, [activeStep]);
+  const isLastStep = useMemo(() => activeStep === steps.length - 1, [
+    activeStep,
+  ]);
 
   // Handlers
   const handleSetActiveStep = (stepToSetActive: number) => {
@@ -94,6 +78,14 @@ const Wizard: FC<Types.Props> = ({
   const goToNext = () => handleSetActiveStep(activeStep + 1);
   const goToStep = (newStep: number) => handleSetActiveStep(newStep);
 
+  useEffect(() => {
+    handleSetActiveStep(step);
+  }, [initialStep]);
+
+  useEffect(() => {
+    handleSetIsDisabled(disabled);
+  }, [disabled]);
+
   const actions = {
     goToPrevious,
     goToNext,
@@ -101,34 +93,38 @@ const Wizard: FC<Types.Props> = ({
     setIsDisabled: handleSetIsDisabled,
   };
 
-  const config = {
-    steps,
-    isDisabled,
-    activeStep,
-    activeTitle,
-    isFirstStep,
-    isLastStep,
-  };
+  const config = useMemo(
+    () => ({
+      steps,
+      isDisabled,
+      activeStep,
+      activeTitle,
+      isFirstStep,
+      isLastStep,
+    }),
+    [isDisabled, activeStep, activeTitle, isFirstStep, isLastStep],
+  );
 
-  const Wrapper = withForm ? 'form' : Fragment;
-
-  const wrapperProps = withForm && {
-    onSubmit: form.handleSubmit,
-  };
+  const schema = useCallback(() => {
+    const { validationSchema = () => object().shape({}) } = steps[activeStep];
+    return validationSchema({});
+  }, [activeStep]);
 
   return (
-    <Wrapper {...wrapperProps}>
-      <WizardContextProvider
-        value={{
-          actions,
-          config,
-          shared,
-          form,
-        }}
-      >
-        {children}
-      </WizardContextProvider>
-    </Wrapper>
+    <Formik validationSchema={schema} {...form}>
+      {props => (
+        <Form>
+          <WizardWrapper
+            actions={actions}
+            config={config}
+            shared={shared}
+            form={props}
+          >
+            {children}
+          </WizardWrapper>
+        </Form>
+      )}
+    </Formik>
   );
 };
 
