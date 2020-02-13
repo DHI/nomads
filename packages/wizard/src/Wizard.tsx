@@ -29,9 +29,6 @@ const Wizard: FC<Types.Props> = ({
   form,
   steps = [],
   children,
-  disabled = false,
-  onDisabled,
-  onStepChange,
   initialStep = 0,
   shared = {},
 }) => {
@@ -44,54 +41,47 @@ const Wizard: FC<Types.Props> = ({
     isAboveMin,
     isBelowMax,
   ]);
-  const step = useMemo(() => (isValid ? initialStep : 0), [isValid]);
+  const step = useMemo(() => (isValid ? initialStep : 0), [
+    isValid,
+    initialStep,
+  ]);
 
   // States
   const [activeStep, setActiveStep] = useState(step);
   const [activeTitle, setActiveTitle] = useState([...steps][step].title);
-  const [isDisabled, setIsDisabled] = useState(disabled);
+  const [isDisabled, setIsDisabled] = useState(true);
 
   // Checkpoints
   const isFirstStep = useMemo(() => activeStep === 0, [activeStep]);
   const isLastStep = useMemo(() => activeStep === steps.length - 1, [
     activeStep,
+    steps,
   ]);
 
-  // Handlers
-  const handleSetActiveStep = (stepToSetActive: number) => {
-    const { title } = steps[stepToSetActive];
-    const drawerSelector = '[data-drawer-content]';
-    const drawerContent = document && document.querySelector(drawerSelector);
-    if (drawerContent !== null) drawerContent.scrollTop = 0;
-    if (onStepChange) onStepChange(stepToSetActive);
-    setActiveStep(stepToSetActive);
+  // Set title on step change
+  useEffect(() => {
+    const { title } = steps[activeStep];
     setActiveTitle(title);
-  };
-
-  const handleSetIsDisabled = (disabledBoolean: boolean) => {
-    if (onDisabled) onDisabled(disabledBoolean);
-    setIsDisabled(disabledBoolean);
-  };
+  }, [activeStep]);
 
   // Actions
-  const goToPrevious = () => handleSetActiveStep(activeStep - 1);
-  const goToNext = () => handleSetActiveStep(activeStep + 1);
-  const goToStep = (newStep: number) => handleSetActiveStep(newStep);
+  const goToPrevious = useCallback(() => setActiveStep(activeStep - 1), [
+    activeStep,
+  ]);
+  const goToNext = useCallback(() => setActiveStep(activeStep + 1), [
+    activeStep,
+  ]);
+  const goToStep = useCallback((newStep: number) => setActiveStep(newStep), []);
 
-  useEffect(() => {
-    handleSetActiveStep(step);
-  }, [initialStep]);
-
-  useEffect(() => {
-    handleSetIsDisabled(disabled);
-  }, [disabled]);
-
-  const actions = {
-    goToPrevious,
-    goToNext,
-    goToStep,
-    setIsDisabled: handleSetIsDisabled,
-  };
+  const actions = useMemo(
+    () => ({
+      goToPrevious,
+      goToNext,
+      goToStep,
+      setIsDisabled,
+    }),
+    [goToPrevious, goToNext, goToStep, setIsDisabled],
+  );
 
   const config = useMemo(
     () => ({
@@ -102,7 +92,7 @@ const Wizard: FC<Types.Props> = ({
       isFirstStep,
       isLastStep,
     }),
-    [isDisabled, activeStep, activeTitle, isFirstStep, isLastStep],
+    [steps, isDisabled, activeStep, activeTitle, isFirstStep, isLastStep],
   );
 
   const schema = useCallback(() => {
@@ -112,13 +102,13 @@ const Wizard: FC<Types.Props> = ({
 
   return (
     <Formik validationSchema={schema} {...form}>
-      {props => (
+      {formProps => (
         <Form>
           <WizardWrapper
             actions={actions}
             config={config}
             shared={shared}
-            form={props}
+            form={formProps}
           >
             {children}
           </WizardWrapper>

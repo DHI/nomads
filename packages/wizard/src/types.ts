@@ -31,12 +31,9 @@ export interface WizardContext {
 }
 
 export interface Props {
-  steps: Step[];
   children: ReactNode;
-  disabled?: boolean;
-  onDisabled?: (state: boolean) => any;
-  onStepChange?: (step: number) => any;
+  form: FormikConfig<Values>;
   initialStep: number;
   shared?: object;
-  form: FormikConfig<Values>;
+  steps: Step[];
 }

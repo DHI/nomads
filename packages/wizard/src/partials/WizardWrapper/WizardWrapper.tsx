@@ -17,10 +17,10 @@ const WizardWrapper: FC<IProps> = ({
 }) => {
   const { setIsDisabled } = actions;
   const { activeStep } = config;
-  const { values, isValid } = form;
+  const { values, isValid, validateForm } = form;
 
   const handleFormValidation = async () => {
-    await form.validateForm();
+    await validateForm();
   };
 
   useEffect(() => {
