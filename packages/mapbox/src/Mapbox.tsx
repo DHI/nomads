@@ -1,4 +1,4 @@
-import React, { SFC, useEffect, useState } from 'react';
+import React, { SFC, useEffect, useState, cloneElement } from 'react';
 import ReactMapGL, { Source, Layer, FlyToInterpolator } from 'react-map-gl';
 import { easeCubicInOut } from 'd3-ease';
 
@@ -12,6 +12,7 @@ const Mapbox: SFC<Types.Props> = ({
   mapPosition,
   mapSource,
   mapStyle,
+  mapMarkers = [],
   children,
   ...rest
 }) => {
@@ -51,6 +52,9 @@ const Mapbox: SFC<Types.Props> = ({
             <Layer key={layer.id} {...layer} />
           ))}
         </Source>
+      )}
+      {mapMarkers.map((mapMarker, index) =>
+        cloneElement(mapMarker, { key: index }),
       )}
       {children && children({ viewport })}
     </ReactMapGL>

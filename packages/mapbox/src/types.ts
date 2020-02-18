@@ -1,4 +1,5 @@
 import { FeatureCollection } from 'geojson';
+import { ElementType, ReactNode, ReactElement } from 'react';
 
 export interface MapSource {
   collection?: FeatureCollection;
@@ -31,4 +32,5 @@ export interface Props {
   mapSource?: MapSource;
   mapInteractions?: MapInteractions;
   children?: any;
+  mapMarkers?: ReactElement[];
 }

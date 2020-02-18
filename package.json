@@ -104,7 +104,7 @@
     "@deck.gl/react": "7.3.3",
     "@dhi-solutions/breadcrumbs": "0.0.1",
     "@dhi-solutions/shell": "0.0.12",
-    "@dhi-solutions/wizard": "0.0.16",
+    "@dhi-solutions/wizard": "0.0.17",
     "@material-ui/core": "4.3.3",
     "@material-ui/icons": "4.4.3",
     "deck.gl": "7.3.3",
