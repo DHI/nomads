@@ -1,7 +1,6 @@
 import store from 'store2';
 import isNil from 'lodash/isNil';
 
-import setToken from './lib/setToken';
 import localStorageUserKey from './lib/localStorageUserKey';
 
 export default async () => {
@@ -10,10 +9,11 @@ export default async () => {
     const user = JSON.parse(userFromLocalStorage);
     const { accessToken: token } = user;
     const isTokenValid = !isNil(token);
-
-    await setToken(token);
-
-    return Promise.resolve(isTokenValid);
+    if (isTokenValid) {
+      return Promise.resolve(user);
+    } else {
+      throw Error(`Token is not valid`);
+    }
   } catch (error) {
     return Promise.reject(error.response);
   }
