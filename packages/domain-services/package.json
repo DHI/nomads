@@ -1,0 +1,29 @@
+{
+  "name": "@dhi-solutions/domain-services",
+  "version": "0.0.0",
+  "side-effects": false,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "license": "MIT",
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "build:js": "cross-env BABEL_ENV=production babel --root-mode upward src --out-dir dist --extensions .ts,.tsx --no-comments",
+    "build:types": "tsc -p tsconfig.build.json",
+    "prebuild": "yarn typecheck",
+    "build": "yarn build:js --delete-dir-on-start ",
+    "postbuild": "yarn build:types",
+    "watch": "run-p \"build:types -w\" \"build:js --watch\""
+  },
+  "dependencies": {
+    "axios": "0.19.2",
+    "lodash": "4.17.15",
+    "store2": "2.10.0"
+  }
+}
