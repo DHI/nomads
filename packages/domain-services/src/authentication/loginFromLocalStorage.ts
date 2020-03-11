@@ -5,7 +5,8 @@ import setToken from './lib/setToken';
 export default async () => {
   try {
     const user = await getUser();
-    const { accessToken: token } = user;
+    const { accessToken } = user;
+    const { token } = accessToken;
     await setToken(token);
     return Promise.resolve(user);
   } catch (error) {
