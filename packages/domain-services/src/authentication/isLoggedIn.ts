@@ -1,7 +1,7 @@
 import store from 'store2';
 import isNil from 'lodash/isNil';
 
-import { options } from '../index';
+import options from '../options';
 
 const { localStorageUserKey } = options;
 

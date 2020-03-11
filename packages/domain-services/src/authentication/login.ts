@@ -1,6 +1,7 @@
 import store from 'store2';
 
-import API, { options } from '../index';
+import API from '../index';
+import options from '../options';
 
 import * as Types from './types';
 
@@ -9,14 +10,9 @@ import setToken from './lib/setToken';
 
 const { localStorageUserKey } = options;
 
-export default async ({
-  baseURL = API.defaults.baseURL,
-  id,
-  password,
-  config = {},
-}: Types.ILogin) => {
+export default async ({ id, password, config = {} }: Types.ILogin) => {
   try {
-    const endpoint = baseURL + '/api';
+    const endpoint = '/api';
     const validationEndpoint = endpoint + '/accounts/validation';
     const tokenEndpoint = endpoint + '/tokens';
 

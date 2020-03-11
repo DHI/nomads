@@ -1,6 +1,6 @@
 import store from 'store2';
 
-import { options } from '../index';
+import options from '../options';
 
 const { localStorageUserKey } = options;
 

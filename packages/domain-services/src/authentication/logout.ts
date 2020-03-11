@@ -2,7 +2,7 @@ import store from 'store2';
 
 import setToken from './lib/setToken';
 
-import { options } from '../index';
+import options from '../options';
 
 const { localStorageUserKey } = options;
 

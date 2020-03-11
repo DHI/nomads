@@ -1,6 +1,5 @@
 import axios from 'axios';
 import isArray from 'lodash/isArray';
-import set from 'lodash/set';
 
 import authentication from './authentication';
 
@@ -9,24 +8,6 @@ export { authentication };
 export const API = axios.create({
   responseType: 'json',
 });
-
-interface IOptions {
-  baseURL: string;
-  localStorageUserKey: string;
-}
-
-export const options: IOptions = {
-  baseURL: API.defaults.baseURL,
-  localStorageUserKey: 'DHI_USER_DATA',
-};
-
-export const initialize = ({
-  baseURL,
-  localStorageUserKey,
-}: IOptions = options) => {
-  set(API, 'defaults.baseURL', baseURL);
-  set(options, 'localStorageUserKey', localStorageUserKey);
-};
 
 // Domain services sends the data property as a string
 export const getDataAsJSON = async (response: any) => {
