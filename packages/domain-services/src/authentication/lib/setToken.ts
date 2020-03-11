@@ -17,6 +17,6 @@ export default async (value: string | undefined) => {
       throw Error('Token is still the same');
     }
   } catch (error) {
-    Promise.reject('Did not update the header');
+    return Promise.reject('Did not update the header');
   }
 };
