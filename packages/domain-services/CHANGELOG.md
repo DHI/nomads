@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.17](https://github.com/DHI-Solutions/nomads/compare/@dhi-solutions/domain-services@0.0.16...@dhi-solutions/domain-services@0.0.17) (2020-03-11)
+
+**Note:** Version bump only for package @dhi-solutions/domain-services
+
+
+
+
+
 ## [0.0.16](https://github.com/DHI-Solutions/nomads/compare/@dhi-solutions/domain-services@0.0.15...@dhi-solutions/domain-services@0.0.16) (2020-03-11)
 
 **Note:** Version bump only for package @dhi-solutions/domain-services
