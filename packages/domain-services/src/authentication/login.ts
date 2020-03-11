@@ -1,14 +1,12 @@
 import store from 'store2';
 
 import API from '../index';
-import options from '../options';
+import { getOption } from '../options';
 
 import * as Types from './types';
 
 import mapUser from './lib/mapUser';
 import setToken from './lib/setToken';
-
-const { localStorageUserKey } = options;
 
 export default async ({ id, password, config = {} }: Types.ILogin) => {
   try {
@@ -41,7 +39,9 @@ export default async ({ id, password, config = {} }: Types.ILogin) => {
 
     const user = { ...mappedUser, ...tokenData };
 
-    store.set(localStorageUserKey, user);
+    const localStorageKey = getOption('localStorageKey');
+
+    store.set(localStorageKey + '/USER', user);
 
     return Promise.resolve(user);
   } catch (error) {

@@ -1,10 +1,9 @@
 import store from 'store2';
 
-import options from '../options';
-
-const { localStorageUserKey } = options;
+import { getOption } from '../options';
 
 export default () => {
-  const user = store.get(localStorageUserKey);
+  const localStorageKey = getOption('localStorageKey');
+  const user = store.get(localStorageKey + '/USER');
   return user;
 };

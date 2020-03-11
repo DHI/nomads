@@ -2,15 +2,15 @@ import store from 'store2';
 
 import setToken from './lib/setToken';
 
-import options from '../options';
-
-const { localStorageUserKey } = options;
+import { getOption } from '../options';
 
 export default async () => {
   try {
     await setToken(undefined);
 
-    store.remove(localStorageUserKey);
+    const localStorageKey = getOption('localStorageKey');
+
+    store.remove(localStorageKey + '/USER');
 
     return Promise.resolve();
   } catch (error) {

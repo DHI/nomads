@@ -1,7 +1,13 @@
-export interface IOptions {
-  localStorageUserKey: string;
-}
+import get from 'lodash/get';
 
-export default {
-  localStorageUserKey: 'DHI_USER_DATA',
-} as IOptions;
+import set from 'lodash/set';
+
+let options = {};
+
+export const getOption = (option: string, defaultValue: any = undefined) => {
+  return get(options, option, defaultValue);
+};
+
+export const setOption = (option: string, value: any = undefined) => {
+  return set(options, option, value);
+};

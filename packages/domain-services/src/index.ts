@@ -1,18 +1,29 @@
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
 import isArray from 'lodash/isArray';
 
-import initialize from './initialize';
 import authentication from './authentication';
+
+import * as Types from './types';
+import { setOption } from './options';
 
 // Subpackages
 
-export { initialize, authentication };
+export { authentication };
 
 // Instance
 
-export const API = axios.create({
-  responseType: 'json',
-});
+export let API: AxiosInstance;
+
+export const initialize = ({
+  config = {},
+  localStorageKey,
+}: Types.IInitialize) => {
+  setOption('localStorageKey', localStorageKey);
+  API = axios.create({
+    responseType: 'json',
+    ...config,
+  });
+};
 
 // Helpers
 
