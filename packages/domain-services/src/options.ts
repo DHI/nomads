@@ -1,9 +1,7 @@
-interface IOptions {
+export interface IOptions {
   localStorageUserKey: string;
 }
 
-let options: IOptions = {
+export default {
   localStorageUserKey: 'DHI_USER_DATA',
-};
-
-export default options;
+} as IOptions;
