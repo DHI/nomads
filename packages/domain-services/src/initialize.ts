@@ -1,4 +1,5 @@
 import set from 'lodash/set';
+import get from 'lodash/get';
 
 import API from './index';
 import options from './options';
@@ -9,8 +10,8 @@ interface IInitialize {
 }
 
 const defaultInitializer = {
-  baseURL: API.defaults.baseURL,
-  localStorageUserKey: options.localStorageUserKey,
+  baseURL: get(API, 'defaults.baseURL', ''),
+  localStorageUserKey: get(options, 'localStorageUserKey', ''),
 };
 
 export default ({
