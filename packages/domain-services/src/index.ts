@@ -4,27 +4,32 @@ import set from 'lodash/set';
 
 import authentication from './authentication';
 
+export { authentication };
+
 export const API = axios.create({
   responseType: 'json',
 });
-
-const options = {
-  baseURL: API.defaults.baseURL,
-  localStorageUserKey: 'DHI_USER_DATA',
-};
 
 interface IOptions {
   baseURL: string;
   localStorageUserKey: string;
 }
 
-const initialize = ({ baseURL, localStorageUserKey }: IOptions = options) => {
+export const options: IOptions = {
+  baseURL: API.defaults.baseURL,
+  localStorageUserKey: 'DHI_USER_DATA',
+};
+
+export const initialize = ({
+  baseURL,
+  localStorageUserKey,
+}: IOptions = options) => {
   set(API, 'defaults.baseURL', baseURL);
   set(options, 'localStorageUserKey', localStorageUserKey);
 };
 
 // Domain services sends the data property as a string
-const getDataAsJSON = async (response: any) => {
+export const getDataAsJSON = async (response: any) => {
   const { data: dataAsString } = response || {};
   const isDataArray = isArray(dataAsString);
 
@@ -41,7 +46,7 @@ const getDataAsJSON = async (response: any) => {
 };
 
 // Domain services expects the data property as a string
-const setDataAsString = async (response: any) => {
+export const setDataAsString = async (response: any) => {
   const { data: dataAsJSON } = response || {};
   const isDataArray = isArray(dataAsJSON);
 
@@ -56,7 +61,5 @@ const setDataAsString = async (response: any) => {
 
   return Promise.resolve(dataAsString);
 };
-
-export { authentication, options, initialize, getDataAsJSON, setDataAsString };
 
 export default API;
