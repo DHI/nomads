@@ -44,7 +44,7 @@ export default async ({
 
     const user = { ...mappedUser, ...tokenData };
 
-    store.set(localStorageUserKey, JSON.stringify(user));
+    store.set(localStorageUserKey, user);
 
     return Promise.resolve(user);
   } catch (error) {
