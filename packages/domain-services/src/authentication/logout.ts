@@ -1,11 +1,11 @@
 import store from 'store2';
 
-import setHeader from './lib/setToken';
+import setToken from './lib/setToken';
 import localStorageUserKey from './lib/localStorageUserKey';
 
 export default async () => {
   try {
-    await setHeader(undefined);
+    await setToken(undefined);
 
     store.remove(localStorageUserKey);
 

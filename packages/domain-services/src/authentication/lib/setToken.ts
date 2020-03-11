@@ -8,7 +8,8 @@ import getToken from './getToken';
 
 export default async (value: string | undefined) => {
   try {
-    set(API, authorizationHeader, value);
+    const token = value && `Bearer ${value}`;
+    set(API, authorizationHeader, token);
     const newValue = await getToken();
     if (value === newValue) {
       return Promise.resolve();
