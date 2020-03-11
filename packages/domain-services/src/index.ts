@@ -9,17 +9,18 @@ export const API = axios.create({
 });
 
 const options = {
-  localStorageUserKey: 'DHI_USER_DATA',
   baseURL: API.defaults.baseURL,
+  localStorageUserKey: 'DHI_USER_DATA',
 };
 
-const initialize = ({ baseURL, localStorageUserKey } = options) => {
-  if (baseURL) {
-    set(API, 'defaults.baseURL', baseURL);
-  }
-  if (localStorageUserKey) {
-    set(options, 'localStorageUserKey', localStorageUserKey);
-  }
+interface IOptions {
+  baseURL: string;
+  localStorageUserKey: string;
+}
+
+const initialize = ({ baseURL, localStorageUserKey }: IOptions = options) => {
+  set(API, 'defaults.baseURL', baseURL);
+  set(options, 'localStorageUserKey', localStorageUserKey);
 };
 
 // Domain services sends the data property as a string
