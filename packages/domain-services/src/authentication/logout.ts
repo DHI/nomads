@@ -8,7 +8,7 @@ export default async () => {
   try {
     await setToken(undefined);
 
-    const localStorageKey = getOption('localStorageKey');
+    const localStorageKey = getOption('localStorageKey', '');
 
     store.remove(localStorageKey + '/USER');
 

@@ -39,7 +39,7 @@ export default async ({ id, password, config = {} }: Types.ILogin) => {
 
     const user = { ...mappedUser, ...tokenData };
 
-    const localStorageKey = getOption('localStorageKey');
+    const localStorageKey = getOption('localStorageKey', '');
 
     store.set(localStorageKey + '/USER', user);
 
