@@ -10,7 +10,7 @@ export default async (value: string | undefined) => {
   try {
     const token = value && `Bearer ${value}`;
     set(API, authorizationHeader, token);
-    const newValue = await getToken();
+    const newValue = getToken();
     if (value === newValue) {
       return Promise.resolve();
     } else {
