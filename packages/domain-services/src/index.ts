@@ -1,13 +1,20 @@
 import axios from 'axios';
 import isArray from 'lodash/isArray';
 
+import initialize from './initialize';
 import authentication from './authentication';
 
-export { authentication };
+// Subpackages
+
+export { initialize, authentication };
+
+// Instance
 
 export const API = axios.create({
   responseType: 'json',
 });
+
+// Helpers
 
 // Domain services sends the data property as a string
 export const getDataAsJSON = async (response: any) => {
@@ -42,5 +49,7 @@ export const setDataAsString = async (response: any) => {
 
   return Promise.resolve(dataAsString);
 };
+
+// Default export
 
 export default API;
