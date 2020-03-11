@@ -1,4 +1,3 @@
-import isLoggedIn from './isLoggedIn';
 import getUser from './getUser';
 import setToken from './lib/setToken';
 

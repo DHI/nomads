@@ -1,12 +1,13 @@
 import store from 'store2';
 
-import API from '../index';
+import API, { options } from '../index';
+
+import * as Types from './types';
 
 import mapUser from './lib/mapUser';
 import setToken from './lib/setToken';
-import localStorageUserKey from './lib/localStorageUserKey';
 
-import * as Types from './types';
+const { localStorageUserKey } = options;
 
 export default async ({
   baseURL = API.defaults.baseURL,

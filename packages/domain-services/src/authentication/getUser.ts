@@ -1,6 +1,8 @@
 import store from 'store2';
 
-import localStorageUserKey from './lib/localStorageUserKey';
+import { options } from '../index';
+
+const { localStorageUserKey } = options;
 
 export default () => {
   const user = store.get(localStorageUserKey);

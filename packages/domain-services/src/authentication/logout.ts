@@ -1,7 +1,10 @@
 import store from 'store2';
 
 import setToken from './lib/setToken';
-import localStorageUserKey from './lib/localStorageUserKey';
+
+import { options } from '../index';
+
+const { localStorageUserKey } = options;
 
 export default async () => {
   try {
