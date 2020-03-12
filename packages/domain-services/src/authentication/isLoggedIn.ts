@@ -8,7 +8,7 @@ export default async () => {
   try {
     const localStorageKey = await getOption('localStorageKey', '');
     const user = store.get(localStorageKey + '/USER');
-    const token = get(user, 'accessToken.token', undefined);
+    const token = user && get(user, 'accessToken.token', undefined);
     const isTokenValid = !isNil(token);
     return Promise.resolve(isTokenValid);
   } catch (error) {
