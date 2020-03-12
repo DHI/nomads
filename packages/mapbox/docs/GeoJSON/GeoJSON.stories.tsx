@@ -1,7 +1,8 @@
 import React from 'react';
 import Mapbox from '../../src/Mapbox';
-import DeckGL from 'deck.gl';
+import DeckGL, { DeckProps } from 'deck.gl';
 import { GeoJsonLayer } from '@deck.gl/layers';
+import { ViewportProps } from 'react-map-gl';
 
 export const GeoJSON = () => {
   return (
@@ -17,10 +18,11 @@ export const GeoJSON = () => {
         mapStyle="mapbox://styles/mzdk/ck34cntqj05z91cmjvsjyfw4s"
         mapboxApiAccessToken="pk.eyJ1IjoibXpkayIsImEiOiJjazJuZTlobWkwcGc5M21sbml2cWd0Njl5In0.BasnEPdX95SqEnvv2AOjoQ"
       >
-        {({ viewport }: { viewport: object }) => (
+        {({ viewport }: { viewport: ViewportProps }) => (
           <DeckGL
             viewState={viewport}
-
+            height={viewport.height}
+            width={viewport.width}
             layers={[
               new GeoJsonLayer({
                 data:
