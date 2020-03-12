@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 import isArray from 'lodash/isArray';
-import assign from 'lodash/assign';
+import assignIn from 'lodash/assignIn';
 
 import authentication from './authentication';
 
@@ -22,7 +22,7 @@ export const initialize = async ({
   localStorageKey,
 }: Types.IInitialize) => {
   try {
-    const instance = assign(API, config);
+    const instance = assignIn(API, config);
     const options = await setOption('localStorageKey', localStorageKey);
     return Promise.resolve({ instance, options });
   } catch (error) {
