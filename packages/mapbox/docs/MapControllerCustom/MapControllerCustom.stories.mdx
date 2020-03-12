@@ -2,11 +2,10 @@ import Mapbox from '../../src/Mapbox.tsx';
 import { Preview, Story, Meta, Props } from '@storybook/addon-docs/blocks';
 import * as stories from './MapControllerCustom.stories';
 
-
 import { MapPosition } from './MapPosition.ts';
 import { MapInteractions } from './MapInteractions.ts';
 
-<Meta title="Mapbox" component={Mapbox} />
+<Meta title="Components/Mapbox" component={Mapbox} />
 
 # DHI Solutions
 
@@ -25,7 +24,6 @@ Shared components as a Service. Brought to you by Nomads in DHI Solutions.
 
 #### MapController
 
-
 <Preview withToolbar>
   <Story name="MapControllerCustom">{stories.MapControllerCustom()}</Story>
 </Preview>
@@ -37,5 +35,3 @@ Shared components as a Service. Brought to you by Nomads in DHI Solutions.
 ### MapPosition
 
 <Props of={MapPosition} />
-
-
