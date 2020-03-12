@@ -9,6 +9,6 @@ export default async () => {
     await setToken(token);
     return Promise.resolve(user);
   } catch (error) {
-    return Promise.reject(error.response);
+    return Promise.reject(error);
   }
 };

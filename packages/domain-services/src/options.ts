@@ -5,9 +5,11 @@ import set from 'lodash/set';
 let options = {};
 
 export const getOption = (option: string, defaultValue: any = undefined) => {
-  return get(options, option, defaultValue);
+  const requestedOption = get(options, option, defaultValue);
+  return Promise.resolve(requestedOption);
 };
 
-export const setOption = (option: string, value: any = undefined) => {
-  return set(options, option, value);
+export const setOption = async (option: string, value: any = undefined) => {
+  const requestedOption = set(options, option, value);
+  return Promise.resolve(requestedOption);
 };

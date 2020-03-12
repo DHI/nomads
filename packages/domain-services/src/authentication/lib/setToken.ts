@@ -12,19 +12,11 @@ export default async (value: string | undefined) => {
     set(API, authorizationHeader, token);
     const newValue = getToken();
     if (value === newValue) {
-      return Promise.resolve();
+      return Promise.resolve(newValue);
     } else {
-      return Promise.reject({
-        error: {
-          message: 'Token is still the same',
-        },
-      });
+      throw new Error('Token is still the same');
     }
   } catch (error) {
-    return Promise.reject({
-      error: {
-        message: 'Did not update the header',
-      },
-    });
+    return Promise.reject(error);
   }
 };

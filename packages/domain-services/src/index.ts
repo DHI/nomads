@@ -21,10 +21,11 @@ export const initialize = async ({
   config,
   localStorageKey,
 }: Types.IInitialize) => {
-  setOption('localStorageKey', localStorageKey);
   if (config) {
     assignIn(config, API);
   }
+  const options = await setOption('localStorageKey', localStorageKey);
+  return Promise.resolve(options);
 };
 
 // Helpers

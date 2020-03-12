@@ -8,12 +8,12 @@ export default async () => {
   try {
     await setToken(undefined);
 
-    const localStorageKey = getOption('localStorageKey', '');
+    const localStorageKey = await getOption('localStorageKey', '');
 
     store.remove(localStorageKey + '/USER');
 
-    return Promise.resolve();
+    return Promise.resolve(true);
   } catch (error) {
-    return Promise.reject(error.response);
+    return Promise.reject(error);
   }
 };

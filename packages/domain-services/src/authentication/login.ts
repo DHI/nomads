@@ -23,11 +23,7 @@ export default async ({ id, password, config = {} }: Types.ILogin) => {
     const validationResponse = await API.post(validationEndpoint, body, config);
 
     if (!validationResponse) {
-      return Promise.reject({
-        error: {
-          message: 'Request rejected',
-        },
-      });
+      throw new Error('Request rejected');
     }
 
     const { data: userData } = validationResponse;
@@ -35,11 +31,7 @@ export default async ({ id, password, config = {} }: Types.ILogin) => {
     const tokenResponse = await API.post(tokenEndpoint, body, config);
 
     if (!tokenResponse) {
-      return Promise.reject({
-        error: {
-          message: 'Request rejected',
-        },
-      });
+      throw new Error('Request rejected');
     }
 
     const { data: tokenData } = tokenResponse;
@@ -52,12 +44,12 @@ export default async ({ id, password, config = {} }: Types.ILogin) => {
 
     const user = { ...mappedUser, ...tokenData };
 
-    const localStorageKey = getOption('localStorageKey', '');
+    const localStorageKey = await getOption('localStorageKey', '');
 
     store.set(localStorageKey + '/USER', user);
 
     return Promise.resolve(user);
   } catch (error) {
-    return Promise.reject(error.response);
+    return Promise.reject(error);
   }
 };
