@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Mapbox from '../../src/Mapbox';
-import DeckGL, { ColumnLayer, GeoJsonLayer } from 'deck.gl';
+import DeckGL, { ColumnLayer } from 'deck.gl';
 import { ViewportProps } from 'react-map-gl';
 import MyMapController from './MyMapController';
 import { data } from './MapSource';
@@ -26,9 +26,7 @@ const Map = (props: any) => {
             height={viewport.height}
             width={viewport.width}
             layers={[new ColumnLayer({
-              id: 'column-layer',
               data: props.data,
-              pickable: true,
               extruded: true,
               radius: 10000,
               elevationScale: 10000,
