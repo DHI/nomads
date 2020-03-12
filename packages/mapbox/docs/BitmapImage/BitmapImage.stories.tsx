@@ -1,6 +1,7 @@
 import React from 'react';
 import Mapbox from '../../src/Mapbox';
 import DeckGL from 'deck.gl';
+import { ViewportProps } from 'react-map-gl';
 import { BitmapLayer } from '@deck.gl/layers';
 
 export const BitmapImage = () => {
@@ -15,9 +16,11 @@ export const BitmapImage = () => {
         mapStyle="mapbox://styles/mzdk/ck34cntqj05z91cmjvsjyfw4s"
         mapboxApiAccessToken="pk.eyJ1IjoibXpkayIsImEiOiJjazJuZTlobWkwcGc5M21sbml2cWd0Njl5In0.BasnEPdX95SqEnvv2AOjoQ"
       >
-        {({ viewport }: { viewport: object }) => (
+        {({ viewport }: { viewport: ViewportProps }) => (
           <DeckGL
             viewState={viewport}
+            height={viewport.height}
+            width={viewport.width}
             layers={[
               new BitmapLayer({
                 bounds: [-122.519, 37.7045, -122.355, 37.829],
