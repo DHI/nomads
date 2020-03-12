@@ -1,11 +1,10 @@
 import axios, { AxiosInstance } from 'axios';
 import isArray from 'lodash/isArray';
-import assignIn from 'lodash/assignIn';
 
 import authentication from './authentication';
 
 import * as Types from './types';
-import { setOption } from './options';
+import { setOptions } from './options';
 
 // Subpackages
 
@@ -18,13 +17,16 @@ export const API: AxiosInstance = axios.create({
 });
 
 export const initialize = async ({
-  config,
+  baseURL,
   localStorageKey,
 }: Types.IInitialize) => {
   try {
-    const instance = assignIn(API, config);
-    const options = await setOption('localStorageKey', localStorageKey);
-    return Promise.resolve({ instance, options });
+    if (baseURL) API.defaults.baseURL = baseURL;
+    const options = await setOptions({
+      localStorageKey,
+      baseURL,
+    });
+    return Promise.resolve(options);
   } catch (error) {
     return Promise.reject(error);
   }

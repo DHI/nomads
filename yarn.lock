@@ -1083,6 +1083,24 @@
   dependencies:
     prop-types "^15.6.0"
 
+"@dhi-solutions/breadcrumbs@0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@dhi-solutions/breadcrumbs/-/breadcrumbs-0.0.1.tgz#34a0d935db6c806e61c5c31988d662791f6c963a"
+  integrity sha512-I5p0p5AK6ILY/njgS7BTZrPzZ9hv4o+GVe40ZX4thRXiERbV+yQj+PIfsREZ94XbRfmySYAW5aDZV6oUZoTYCQ==
+  dependencies:
+    clsx "1.0.4"
+
+"@dhi-solutions/shell@0.0.12":
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/@dhi-solutions/shell/-/shell-0.0.12.tgz#1327a6622d459becd94abdafbedcabfe792d241d"
+  integrity sha512-r5qRCN7zCKmfiL5ZQAKPL3qBE95XK8Df3aVKMCc0jarehsHHxCjpVAQvEIi3hBr9FcosXYF2QOHF/ohpBjVpsA==
+  dependencies:
+    i18next "19.0.2"
+    i18next-browser-languagedetector "4.0.1"
+    i18next-xhr-backend "3.2.2"
+    lodash "4.17.15"
+    react-i18next "11.2.6"
+
 "@egoist/vue-to-react@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@egoist/vue-to-react/-/vue-to-react-1.1.0.tgz#83c884b8608e8ee62e76c03e91ce9c26063a91ad"
