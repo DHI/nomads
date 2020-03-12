@@ -1,6 +1,6 @@
 {
   "name": "@dhi-solutions/domain-services",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "side-effects": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
