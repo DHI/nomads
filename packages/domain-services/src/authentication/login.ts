@@ -1,4 +1,5 @@
 import store from 'store2';
+import get from 'lodash/get';
 
 import API from '../index';
 import { getOption } from '../options';
@@ -30,8 +31,8 @@ export default async ({ id, password, config = {} }: Types.ILogin) => {
     if (!tokenResponse) throw Error(`Request rejected`);
 
     const { data: tokenData } = tokenResponse;
-    const { accessToken } = tokenData;
-    const { token } = accessToken;
+
+    const token = get(tokenData, 'accessToken.token', undefined);
 
     await setToken(token);
 
