@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
 
 export interface IInitialize {
-  config: AxiosRequestConfig;
+  config?: AxiosRequestConfig;
   localStorageKey: string;
 }

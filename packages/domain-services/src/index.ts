@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 import isArray from 'lodash/isArray';
+import assignIn from 'lodash/assignIn';
 
 import authentication from './authentication';
 
@@ -12,17 +13,18 @@ export { authentication };
 
 // Instance
 
-export let API: AxiosInstance;
+export const API: AxiosInstance = axios.create({
+  responseType: 'json',
+});
 
-export const initialize = ({
-  config = {},
+export const initialize = async ({
+  config,
   localStorageKey,
 }: Types.IInitialize) => {
   setOption('localStorageKey', localStorageKey);
-  API = axios.create({
-    responseType: 'json',
-    ...config,
-  });
+  if (config) {
+    assignIn(config, API);
+  }
 };
 
 // Helpers
