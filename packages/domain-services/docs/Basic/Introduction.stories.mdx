@@ -1,0 +1,107 @@
+import { Preview, Story, Meta, Props } from '@storybook/addon-docs/blocks';
+
+<Meta title="Connectors/Domain Services/Introduction" />
+
+# DHI Solutions
+
+Shared components as a Service. Brought to you by Nomads in DHI Solutions.
+
+> _Nomads [noh-mads] are members of a people or tribe that has no permanent abode but moves about from place to place._
+
+<br />
+
+---
+
+<br />
+<br />
+
+### Domain Services
+
+This package helps you connect to Domain Services and provides the instance that you can hook into.
+
+1. Install the package:
+
+```properties
+$ yarn add @dhi-solutions/domain-services
+```
+
+2. Whenever you're ready, please import it:
+
+```javascript
+import API, {
+  getDataAsJSON,
+  initialize,
+  setDataAsString,
+} from '@dhi-solutions/domain-services';
+```
+
+3. Initialize the connector before rendering your application in the most outer file:
+
+```javascript
+const start = async () => {
+  try {
+    // Initialize returns the options if needed in the application
+    const options = await initialize({
+      baseURL: 'DOMAIN_SERVICES_URL',
+      localStorageKey: 'APPLICATION_NAME',
+    });
+    // Render the application
+    return ReactDOM.render(
+      <App options={options} />,
+      document.getElementById('root'),
+    );
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+start();
+```
+
+3. Communicate with Domain Services by hooking into the `API` instance. All available endpoints can be called, but here are a few examples. In the case of Domain Services expects stringified JSON when posting data, you can use the `setDataAsString` method in that purpose and opposite the `getDataAsJSON` method to parse it.
+
+```javascript
+const addScenario = async ({ values }) => {
+  try {
+    const body = await setDataAsString(values);
+    const response = await API.post('/api/scenarios/Scenarios', body);
+    if (!response) throw Error(`Request rejected`);
+    const { data } = response || {};
+    return Promise.resolve(data);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
+
+addScenario({ body });
+```
+
+```javascript
+const getScenario = async ({ id }) => {
+  try {
+    const response = await API.get(`/api/scenarios/Scenarios/${id}`);
+    if (!response) throw Error(`Request rejected`);
+    const scenarios = await getDataAsJSON(response);
+    return Promise.resolve(scenarios);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
+
+getScenario({ id });
+```
+
+```javascript
+const getScenarios = async () => {
+  try {
+    const response = await API.get('/api/scenarios/Scenarios');
+    if (!response) throw Error(`Request rejected`);
+    const scenarios = await getDataAsJSON(response);
+    return Promise.resolve(scenarios);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
+
+getScenarios();
+```

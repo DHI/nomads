@@ -52,8 +52,7 @@ export const getDataAsJSON = async (response: any) => {
 };
 
 // Domain services expects the data property as a string
-export const setDataAsString = async (response: any) => {
-  const { data: dataAsJSON } = response || {};
+export const setDataAsString = async (dataAsJSON: any) => {
   const isDataArray = isArray(dataAsJSON);
 
   const getStringifiedItem = (item: any) => {

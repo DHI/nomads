@@ -1,0 +1,68 @@
+import { Preview, Story, Meta, Props } from '@storybook/addon-docs/blocks';
+
+<Meta title="Connectors/Domain Services/Methods/Authentication" />
+
+# DHI Solutions
+
+Shared components as a Service. Brought to you by Nomads in DHI Solutions.
+
+> _Nomads [noh-mads] are members of a people or tribe that has no permanent abode but moves about from place to place._
+
+<br />
+
+---
+
+<br />
+<br />
+
+### Domain Services | Authentication
+
+This package helps you connect to Domain Services and provides the instance that you can hook into.
+
+1. Import the method:
+
+```javascript
+import { authentication } from '@dhi-solutions/domain-services';
+```
+
+2. Log in the user with `id` and `password`. A successful login adds the user object to local storage, and the bearer token to the Authorization header.
+
+```javascript
+const login = async ({ id, password }) => {
+  try {
+    const user = await authentication.login({
+      id: username,
+      password,
+    });
+    // Handle the successful request
+    return user;
+  } catch (error) {
+    // Handle the failed request.
+    console.error(error);
+  }
+};
+
+login({ id, password });
+```
+
+3. When storing the user object in local storage, you can log in the user on the next visit:
+
+```javascript
+const loginFromLocalStorage = async () => {
+  try {
+    const isLoggedIn = await authentication.isLoggedIn();
+    if (isLoggedIn) {
+      const user = await authentication.loginFromLocalStorage();
+      // Handle the successful request
+      return user;
+    } else {
+      // Ignore
+    }
+  } catch (error) {
+    // Handle the failed request.
+    console.error(error);
+  }
+};
+
+loginFromLocalStorage();
+```
