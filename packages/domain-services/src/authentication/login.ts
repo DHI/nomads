@@ -22,13 +22,25 @@ export default async ({ id, password, config = {} }: Types.ILogin) => {
 
     const validationResponse = await API.post(validationEndpoint, body, config);
 
-    if (!validationResponse) throw Error(`Request rejected`);
+    if (!validationResponse) {
+      return Promise.reject({
+        error: {
+          message: 'Request rejected',
+        },
+      });
+    }
 
     const { data: userData } = validationResponse;
 
     const tokenResponse = await API.post(tokenEndpoint, body, config);
 
-    if (!tokenResponse) throw Error(`Request rejected`);
+    if (!tokenResponse) {
+      return Promise.reject({
+        error: {
+          message: 'Request rejected',
+        },
+      });
+    }
 
     const { data: tokenData } = tokenResponse;
 

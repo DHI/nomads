@@ -14,9 +14,17 @@ export default async (value: string | undefined) => {
     if (value === newValue) {
       return Promise.resolve();
     } else {
-      throw Error('Token is still the same');
+      return Promise.reject({
+        error: {
+          message: 'Token is still the same',
+        },
+      });
     }
   } catch (error) {
-    return Promise.reject('Did not update the header');
+    return Promise.reject({
+      error: {
+        message: 'Did not update the header',
+      },
+    });
   }
 };
