@@ -20,6 +20,7 @@ export const GeoJSON = () => {
         {({ viewport }: { viewport: object }) => (
           <DeckGL
             viewState={viewport}
+
             layers={[
               new GeoJsonLayer({
                 data:
